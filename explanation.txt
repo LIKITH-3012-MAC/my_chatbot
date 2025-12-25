@@ -1,0 +1,76 @@
+PROMETHEUS AI // SYSTEM V2.0
+Architect: Likith Naidu Anumakonda Date: December 25, 2025 Status: Operational (Local Host + Web Tunneling)
+
+1. Project Objective
+To build a completely free, private, and high-fidelity AI chatbot that runs locally on a MacBook Air (M1) without using paid API keys (like OpenAI). The system is fully custom-branded and deployed to the internet via a secure tunnel for integration into a personal portfolio.
+
+2. The Tech Stack
+Component	Technology	Purpose
+The Brain	Ollama (Llama 3.2)	Runs the LLM locally on your hardware.
+Backend	FastAPI	Middleware that receives user text and talks to Ollama.
+Frontend	Streamlit	The visual chat interface (GUI).
+Styling	Custom CSS	"Crystal Glass & Hologram" UI Design System.
+Deployment	Ngrok	Tunnels localhost to a public URL (https://...).
+Version Control	Git & GitHub	Code backup and repository management.
+3. Development History (Step-by-Step)
+Phase 1: Initialization
+Action: Installed Ollama and pulled the llama3.2 model.
+Verification: Confirmed the model runs in the terminal using ollama run llama3.2.
+Phase 2: Backend Development (backend.py)
+Action: Created a FastAPI server on Port 8000.
+Logic: It accepts a JSON payload (prompt), sends it to the local Ollama API (http://localhost:11434/api/generate), and returns the response.
+Phase 3: Frontend Evolution (frontend.py)
+We iterated through three distinct design versions:
+V1 (Basic): Standard Streamlit interface.
+V2 (Cyber-Noir): Deep black "Obsidian" theme with lava-pulse animations. (Discarded due to low visibility of background photo).
+V3 (Final - Crystal Glass):
+Background: Custom image (LIKITH_NAIDU-ANUMAKONDA.png) with a 40% dark overlay.
+UI Elements: Frosted glass message bubbles, rounded capsule input field, and neon cyan/orange accents.
+Typography: "Rajdhani" and "Space Mono" fonts with heavy drop shadows for readability.
+Phase 4: Version Control
+Issue: Accidentally initialized Git in the Home Directory (~), causing "Operation not permitted" errors.
+Fix: Removed the rogue .git folder, navigated to ~/my_chatbot, and initialized Git correctly.
+Result: Code successfully pushed to GitHub repository: LIKITH-3012-MAC/my_chatbot.
+Phase 5: Deployment & Integration
+Issue: Ports 8000 and 8501 were blocked by "Zombie" processes.
+Fix: Used kill -9 <PID> to clear the ports.
+Ngrok: Authenticated with a token to create a secure tunnel.
+Integration: Generated an HTML <iframe> code snippet to embed the live chatbot into your personal portfolio website.
+4. The Final Code Structure
+Your folder ~/my_chatbot/ contains:
+backend.py (Server logic)
+frontend.py (UI & Design)
+LIKITH_NAIDU-ANUMAKONDA.png (Background asset)
+.gitignore (System file)
+.git/ (Repository data)
+5. User Manual: How to Launch
+Since this is a local-first AI, it does not run 24/7 on the cloud. You must turn the key to start the engine.
+
+Startup Sequence (The "3-Terminal" Method)
+Step 1: Start the Backend (Terminal 1)
+
+Bash
+cd ~/my_chatbot
+uvicorn backend:app --reload --port 8000
+Wait for: "Application startup complete"
+
+Step 2: Start the Frontend (Terminal 2)
+
+Bash
+cd ~/my_chatbot
+streamlit run frontend.py --server.port 8501
+Step 3: Open the Tunnel (Terminal 3)
+
+Bash
+ngrok http 8501
+Step 4: Connect
+Copy the https://....ngrok-free.app link from Terminal 3.
+Paste it into your Portfolio HTML code (src="...").
+Prometheus AI is LIVE.
+6. Troubleshooting Cheat Sheet
+Error: Address already in use
+Solution: Run lsof -i :8000 (or 8501) and kill the PID.
+Error: Ngrok authentication failed
+Solution: Run ngrok config add-authtoken [YOUR_TOKEN].
+Error: Background image not showing.
+Solution: Ensure the PNG file is inside ~/my_chatbot and the filename in frontend.py matches exactly.
