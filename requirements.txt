@@ -1,0 +1,6 @@
+streamlit
+requests
+fpdf2
+textblob
+pyttsx3
+streamlit-mic-recorder
